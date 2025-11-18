@@ -1,4 +1,4 @@
-package com.example.microservicoDeReservas.exception;
+package com.example.microservicoDeReservas.model.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

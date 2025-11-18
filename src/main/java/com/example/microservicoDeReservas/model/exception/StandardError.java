@@ -1,4 +1,4 @@
-package com.example.microservicoDeReservas.exception;
+package com.example.microservicoDeReservas.model.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

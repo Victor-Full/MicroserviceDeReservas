@@ -1,8 +1,8 @@
-package com.example.microservicoDeReservas.validation;
+package com.example.microservicoDeReservas.model.validation;
 
 import com.example.microservicoDeReservas.dto.ReservaDTO;
-import com.example.microservicoDeReservas.exception.ConflitoException;
-import com.example.microservicoDeReservas.exception.ValidacaoException;
+import com.example.microservicoDeReservas.model.exception.ConflitoException;
+import com.example.microservicoDeReservas.model.exception.ValidacaoException;
 import com.example.microservicoDeReservas.model.entity.Reserva;
 import com.example.microservicoDeReservas.model.entity.StatusEspaco;
 import com.example.microservicoDeReservas.model.repository.ReservaRepository;
