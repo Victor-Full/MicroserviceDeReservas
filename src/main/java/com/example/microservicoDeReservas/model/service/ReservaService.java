@@ -94,7 +94,8 @@ public class ReservaService {
             if (r.getDataReserva().isEqual(dataAgora) && tempoAgora.isAfter(r.getHoraFinal()))
                 r.setStatusEspaco(StatusEspaco.LIVRE);
 
-            if (r.getDataReserva().isEqual(dataAgora) && !tempoAgora.isBefore(r.getHoraInicial()) && !tempoAgora.isAfter(r.getHoraFinal())) {
+            if (r.getDataReserva().isEqual(dataAgora) && !tempoAgora.isBefore(r.getHoraInicial())
+                    && !tempoAgora.isAfter(r.getHoraFinal())) {
                 r.setStatusEspaco(StatusEspaco.ALOCADO);
                 r.setStatusReserva(StatusReserva.APROVADO);
             }
