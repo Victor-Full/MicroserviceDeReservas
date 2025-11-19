@@ -10,8 +10,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Reserva {
 
     @Id
