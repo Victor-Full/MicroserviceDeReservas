@@ -47,22 +47,22 @@ public class ReservaValidation {
         List<Reserva> reservasExistentes = repository.findByEspacoIdAndDataReservaAndStatusEspaco(
                 dto.espacoId(),
                 dto.dataReserva(),
-                StatusEspaco.ALOCADO
-        );
+                StatusEspaco.ALOCADO);
 
         for (Reserva reserva : reservasExistentes) {
             if (dto.id() != null && dto.id().equals(reserva.getId())) {
                 continue;
             }
 
-            if (horarioConflita(dto.horaInicial(), dto.horaFinal(), reserva.getHoraInicial(), reserva.getHoraFinal())) {
+            if (horarioConflita(dto.horaInicial(),
+                    dto.horaFinal(), reserva.getHoraInicial(), reserva.getHoraFinal())) {
                 throw new ConflitoException("Conflito de horário! O espaço já está alocado das "
                         + reserva.getHoraInicial() + " às " + reserva.getHoraFinal());
             }
         }
     }
 
-    private boolean horarioConflita(LocalTime inicio1, LocalTime fim1, LocalTime inicio2, LocalTime fim2 ){
+    private boolean horarioConflita(LocalTime inicio1, LocalTime fim1, LocalTime inicio2, LocalTime fim2) {
         return inicio1.isBefore(fim2) && fim1.isAfter(inicio2);
     }
 
