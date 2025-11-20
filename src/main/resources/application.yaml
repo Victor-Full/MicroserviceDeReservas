@@ -6,7 +6,7 @@ spring:
     name: ms-reservas
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/db_ms_reservas
+    url: jdbc:postgresql://localhost:5434/db_ms_reservas
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
