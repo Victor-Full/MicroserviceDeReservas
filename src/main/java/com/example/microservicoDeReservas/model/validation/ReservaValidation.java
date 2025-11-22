@@ -1,7 +1,10 @@
 package com.example.microservicoDeReservas.model.validation;
 
 import com.example.microservicoDeReservas.dto.ReservaDTO;
+import com.example.microservicoDeReservas.feign.EspacoInterface;
+import com.example.microservicoDeReservas.feign.ProfessorInterface;
 import com.example.microservicoDeReservas.model.exception.ConflitoException;
+import com.example.microservicoDeReservas.model.exception.NaoExisteException;
 import com.example.microservicoDeReservas.model.exception.ValidacaoException;
 import com.example.microservicoDeReservas.model.entity.Reserva;
 import com.example.microservicoDeReservas.model.entity.StatusEspaco;
@@ -15,9 +18,14 @@ import java.util.List;
 public class ReservaValidation {
 
     private final ReservaRepository repository;
+    private final ProfessorInterface professorInterface;
+    private final EspacoInterface espacoInterface;
 
-    public ReservaValidation(ReservaRepository repository) {
+    public ReservaValidation(ReservaRepository repository, ProfessorInterface professorInterface,
+            EspacoInterface espacoInterface) {
         this.repository = repository;
+        this.professorInterface = professorInterface;
+        this.espacoInterface = espacoInterface;
     }
 
     public void validar(ReservaDTO dto) {
@@ -64,6 +72,18 @@ public class ReservaValidation {
 
     private boolean horarioConflita(LocalTime inicio1, LocalTime fim1, LocalTime inicio2, LocalTime fim2) {
         return inicio1.isBefore(fim2) && fim1.isAfter(inicio2);
+    }
+
+    public void validaProfessor(ReservaDTO dto) {
+        if (!professorInterface.existsId(dto.professorId())) {
+            throw new NaoExisteException("O professor de id: " + dto.professorId() + " nao existe");
+        }
+    }
+
+    public void validaEspaco(ReservaDTO dto) {
+        if (!espacoInterface.existsIdEspaco(dto.espacoId())) {
+            throw new NaoExisteException("O Espaco de id: " + dto.espacoId() + " nao existe");
+        }
     }
 
 }
