@@ -31,6 +31,8 @@ public class ReservaService {
     }
 
     public Reserva criar(ReservaDTO dto) {
+        validation.validaEspaco(dto);
+        validation.validaProfessor(dto);
         validation.validar(dto);
 
         Reserva reserva = new Reserva();
@@ -53,6 +55,8 @@ public class ReservaService {
     public Reserva update(Long id, ReservaDTO dto) {
         Reserva reservaExistente = findById(id);
 
+        validation.validaEspaco(dto);
+        validation.validaProfessor(dto);
         validation.validar(dto);
 
         reservaExistente.setEspacoId(dto.espacoId());
